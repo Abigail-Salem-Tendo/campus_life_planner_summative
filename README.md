@@ -9,15 +9,16 @@ and manage their productivity through accessible, responsive interfaces.
 **Planned Features**
 - Add, edit, delete tasks and events
 - Sort and search tasks using regex patterns
-- Dashboard with weekly trend chart and totals
-- Local storage persistence (auto-save)
-- Import/export tasks in JSON
+- Dashboard with weekly trend chart and total tasks completed
+- Local storage(auto-save)
 - Settings for time units (minutes ↔ hours)
-- Keyboard-friendly and accessible design
-- Responsive layout for mobile, tablet, desktop
+- Responsive layout for mobile and desktop
 
 **The Data Model**
 This is an example of how the data would look like
+
+Each record will have an ID, a title, duration, due date,
+a timestamp and date of when each task was created and updated.
 ```
 {
 "id": "task_001",
@@ -35,8 +36,6 @@ This is an example of how the data would look like
 ***Goals***
 
 - Use proper semantic HTML tags to structure my pages, helping assistive technologies navigate content correctly.
-- Test navigation using only the Tab key and make sure every interactive element (buttons, links, inputs) is reachable and usable.
-- Use ARIA labels where needed to make interactive icons and buttons understandable for screen reader users.
-- Use accessible color palettes with a contrast ratio of at least 4.5:1 for text. Buttons and links will be visually distinct.
+- Make sure interactive elements are usable with the keyboard
+- Use aria-live for status updates
 - Write meaningful alt text for all images, especially for profile and project images.
-

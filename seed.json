@@ -1,0 +1,110 @@
+[
+  {
+    "id": "task_001",
+    "title": "Submit JavaScript Assignment",
+    "dueDate": "2025-10-15",
+    "duration": 90,
+    "tag": "School",
+    "createdAt": "2025-10-10",
+    "updatedAt": "2025-10-10"
+  },
+  {
+    "id": "task_002",
+    "title": "Group meeting for design project",
+    "dueDate": "2025-10-12",
+    "duration": 120,
+    "tag": "Teamwork",
+    "createdAt": "2025-10-09",
+    "updatedAt": "2025-10-09"
+  },
+  {
+    "id": "task_003",
+    "title": "Morning run with friends",
+    "dueDate": "2025-10-11",
+    "duration": 45,
+    "tag": "Fitness",
+    "createdAt": "2025-10-10",
+    "updatedAt": "2025-10-10"
+  },
+  {
+    "id": "task_004",
+    "title": "Attend French language class",
+    "dueDate": "2025-10-16",
+    "duration": 60,
+    "tag": "Learning",
+    "createdAt": "2025-10-09",
+    "updatedAt": "2025-10-09"
+  },
+  {
+    "id": "task_005",
+    "title": "Plan portfolio website sections",
+    "dueDate": "2025-10-13",
+    "duration": 75,
+    "tag": "Personal Project",
+    "createdAt": "2025-10-08",
+    "updatedAt": "2025-10-08"
+  },
+  {
+    "id": "task_006",
+    "title": "Buy groceries for the week",
+    "dueDate": "2025-10-11",
+    "duration": 40,
+    "tag": "Errands",
+    "createdAt": "2025-10-09",
+    "updatedAt": "2025-10-09"
+  },
+  {
+    "id": "task_007",
+    "title": "Read two chapters of ‘Atomic Habits’",
+    "dueDate": "2025-10-14",
+    "duration": 50,
+    "tag": "Reading",
+    "createdAt": "2025-10-10",
+    "updatedAt": "2025-10-10"
+  },
+  {
+    "id": "task_008",
+    "title": "Clean and organize dorm room",
+    "dueDate": "2025-10-12",
+    "duration": 60,
+    "tag": "Personal",
+    "createdAt": "2025-10-09",
+    "updatedAt": "2025-10-09"
+  },
+  {
+    "id": "task_009",
+    "title": "Watch lecture replays for database class",
+    "dueDate": "2025-10-13",
+    "duration": 120,
+    "tag": "School",
+    "createdAt": "2025-10-08",
+    "updatedAt": "2025-10-08"
+  },
+  {
+    "id": "task_010",
+    "title": "Practice 5K run training plan",
+    "dueDate": "2025-10-17",
+    "duration": 45,
+    "tag": "Fitness",
+    "createdAt": "2025-10-10",
+    "updatedAt": "2025-10-10"
+  },
+  {
+    "id": "task_011",
+    "title": "Volunteer cleanup at community park",
+    "dueDate": "2025-10-18",
+    "duration": 180,
+    "tag": "Community",
+    "createdAt": "2025-10-07",
+    "updatedAt": "2025-10-07"
+  },
+  {
+    "id": "task_012",
+    "title": "Call family and catch up",
+    "dueDate": "2025-10-11",
+    "duration": 30,
+    "tag": "Family",
+    "createdAt": "2025-10-09",
+    "updatedAt": "2025-10-09"
+  }
+]
