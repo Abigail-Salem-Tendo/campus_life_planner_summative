@@ -51,3 +51,42 @@ section {
     gap: 1rem;
     margin-top: 1rem;
 }
+
+/* Styling the add form page */
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.formGroup input {
+    padding: 0.5rem;
+    border: 1px solid #2a5698;
+    border-radius: 5px;
+}
+.formGroup label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.formActions {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
+    gap: 1rem;
+}
+
+.btn {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.saveBtn {
+    background-color: #2b5698;
+    color: #d6cfcf;
+}
+
+.cancelBtn {
+    background-color: transparent;
+}
