@@ -7,36 +7,71 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+<div class="container">
     <header>
-        <h1>Campus Life</h1>
-        <p>Welcome back Abby! Here's how your week looks like now.</p>
+        <nav>
+            <div class="navBar">
+                <h1>Campus Life Planner</h1>
+                <button class="hamburger" id="hamburger">☰</button>
+                <ul class="navLinks">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="addForm.html">Add New</a></li>
+                    <li><a href="tasks.html">All Tasks</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
     </header>
 
     <main>
-        <!-- this section has the weekly overview of the users data -->
-        <section id="weeklyOverview">
-            <h2>Weekly Overview</h2>
-            <p id="completedTasks">Completed Tasks</p>
-            <p id="frequentTag">Most Frequent Tag</p>
-            <p id="overdueTasks">Overdue Tasks</p>
-            <p id="weeklyTrend"> Last 7 Days</p>
-            <p id="weeklyTarget">Weekly Target</p>
+        <section class="greeting">
+            <h1>Campus Life</h1>
+            <p>Welcome back Abby! Here's how your week looks like now.</p>
         </section>
-
+        <!-- this section has the weekly overview of the users data -->
+        <section id="weeklyStats">
+            <h2>Weekly Overview</h2>
+            <div class="weeklyStats">
+                <div class="statCard">
+                    <p class="statTitle">Completed</p>
+                    <p class="statValue"></p>
+                </div>
+                <div class="statCard">
+                    <p class="statTitle">Frequent Tag</p>
+                    <p class="statValue"></p>
+                </div>
+                <div class="statCard">
+                    <p class="statTitle">Overdue</p>
+                    <p class="statValue"></p>
+                </div>
+            </div>
+        </section>
+        <!-- This section has the tasks for that particular day -->
         <section id="todaysTasks">
             <h2>Here are you tasks for today.</h2>
-            <ul id="taskList">
+            <div class="todaysTasks">
+                <ul class="todaysTasksList">
 
-            </ul>
+                </ul>
+            </div>
         </section>
 
         <section id="upcomingEvents">
             <h2>Upcoming Events</h2>
-            <ul id="eventsList">
+            <div class="eventCard">
 
-            </ul>
+            </div>
         </section>
     </main>
+
+    <footer>
+        <section class="contact">
+            <p>Made by Abigail Salem</p>
+            <a href="https://github.com/">My GitHub</a>
+        </section>
+    </footer>
+</div>
 <script src="scripts/"></script>
 </body>
 </html>

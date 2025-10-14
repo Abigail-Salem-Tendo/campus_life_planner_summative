@@ -4,5 +4,50 @@
     box-sizing: border-box;
 }
 
-@media (min-width: 768px)
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F4F3EE;
+    color: #7574FF;
+}
 
+header, main, footer {
+    padding: 1rem 1rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+.navLinks {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #7574FF;
+    font-weight: bold;
+}
+
+.navBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2b5698;
+    padding: 0 1rem;
+}
+
+.hamburger {
+    display: none;
+    border: none;
+    background: #2b5698;
+    cursor: pointer;
+    font-size: 1.6rem;
+}
+
+.weeklyStats {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
