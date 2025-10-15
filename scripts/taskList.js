@@ -1,26 +1,40 @@
 //this script will load the data and display it on the taskpage
 
 import { loadTasks } from "./storage.js";
+import { searchTasks } from "./search.js";
 
 let currentTasks = [];
 
-document.addEventListener("DOMContentLoaded", () => {
-    const taskTable = document.getElementById('taskTable')
-    const sortBy = document.getElementById('sortBy')
+function updateTasks() {
+    const sortBy = document.getElementById("sortBy");
+    const searchInput = document.getElementById("searchTasks");
+    const searchText = searchInput ? searchInput.value : "";
+    let displayList = searchTasks(currentTasks, searchText);
 
+    sortTasks(sortBy.value, displayList);
+
+    renderTasks(displayList);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    //const taskTable = document.getElementById('taskTable')
+    const sortBy = document.getElementById('sortBy')
+    const searchInput = document.getElementById('searchTasks');
     //load and render
     currentTasks = loadTasks();
-    sortTasks('dueDate');
-    renderTasks(currentTasks);
+    //sortTasks('dueDate');
+    //renderTasks(currentTasks);
+    updateTasks()
 
-    sortBy.addEventListener('change', () => {
-        sortTasks(sortBy.value);
-        renderTasks(currentTasks);
-    });
+    sortBy.addEventListener('change', updateTasks);
+
+    if (searchInput) {
+        searchInput.addEventListener('input', updateTasks);
+    }
 });
 
-function sortTasks(key) {
-    currentTasks.sort((a, b) => {
+function sortTasks(key, tasksList) {
+    tasksList.sort((a, b) => {
         if (key === 'dueDate') {
             return new Date(a.dueDate) - new Date(b.dueDate);
         }
