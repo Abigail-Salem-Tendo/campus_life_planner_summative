@@ -1,6 +1,6 @@
 //this script will load the data and display it on the taskpage
 
-import { loadTasks } from "./storage.js";
+import { loadTasks, saveTasks } from "./storage.js";
 import { searchTasks } from "./search.js";
 
 let currentTasks = [];
@@ -9,6 +9,7 @@ function updateTasks() {
     const sortBy = document.getElementById("sortBy");
     const searchInput = document.getElementById("searchTasks");
     const searchText = searchInput ? searchInput.value : "";
+
     let displayList = searchTasks(currentTasks, searchText);
 
     sortTasks(sortBy.value, displayList);
@@ -16,8 +17,32 @@ function updateTasks() {
     renderTasks(displayList);
 }
 
+function deleteTask(id) {
+    currentTasks = currentTasks.filter(task => task.id !== id);
+
+    saveTasks(currentTasks);
+
+    updateTasks();
+}
+
+function handleAction(e) {
+    const target = e.target;
+    const taskId = target.getAttribute("data-id");
+
+    if (!taskId) return;
+
+    if (target.classList.contains('deleteBtn')) {
+        if (confirm("Are you sure you want to delete this task?")) {
+            deleteTask(taskId);
+        }
+    }
+    else if (target.classList.contains('editBtn')) {
+        window.location.href = `addForm.html?id=${taskId}`;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-    //const taskTable = document.getElementById('taskTable')
+    const taskTable = document.getElementById('taskTable')
     const sortBy = document.getElementById('sortBy')
     const searchInput = document.getElementById('searchTasks');
     //load and render
@@ -30,6 +55,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (searchInput) {
         searchInput.addEventListener('input', updateTasks);
+    }
+    if (taskTable) {
+        taskTable.addEventListener('click', handleAction);
     }
 });
 
