@@ -23,17 +23,27 @@
     </nav>
 </header>
 <main>
-    <section>
+    <section class="controls">
         <input class="searchTasks" id="searchTasks" type="text" placeholder="Search here...">
+
+        <div class="sort">
+            <label for="sortBy">Sort By:</label>
+            <select id="sortBy">
+                <option value="dueDate">Due Date</option>
+                <option value="title">Title</option>
+                <option value="tag">Tag</option>
+            </select>
+        </div>
     </section>
 
     <section>
         <h2>All Tasks</h2>
-        <div class="taskTable">
+        <div class="taskTable" id="taskTable">
 
         </div>
     </section>
 </main>
-
+<script type="module" src="scripts/storage.js"></script>
+<script type="module" src="scripts/taskList.js"></script>
 </body>
 </html>
