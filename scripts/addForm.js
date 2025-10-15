@@ -1,6 +1,7 @@
 //This file will handle saving a new task and display a success message
 
 import { loadTasks, saveTasks, generateUniqueId } from "./storage.js";
+import { validateTaskForm } from "./validators.js";
 
 document.addEventListener("DOMContentLoaded", () => {
     const taskForm = document.getElementById('taskForm');
@@ -18,6 +19,26 @@ document.addEventListener("DOMContentLoaded", () => {
     taskForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
+        const formData = {
+            title: taskTitle.value.trim(),
+            dueDate: dueDate.value,
+            duration: duration.value,
+            tag: tag.value.trim(),
+        };
+
+        const validationErrors = validateTaskForm(formData);
+
+        if (validationErrors.length > 0) {
+
+            statusMessage.style.backgroundColor = '#fce3e6';
+            statusMessage.style.color = '#cc0033';
+
+            statusMessage.textContent = validationErrors.join('\n');
+            statusMessage.style.display = 'block';
+
+            return;
+        }
+
         const newTask = {
             id: generateUniqueId(),
             title: taskTitle.value.trim(),
@@ -34,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
         saveTasks(tasks);
 
         //displaying the success message
+        statusMessage.style.backgroundColor = '#a8d39b';
+        statusMessage.style.color = 'green';
         statusMessage.textContent = "Successfully added a new task";
         statusMessage.style.display = 'block';
 
