@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Planner | Tasks</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<header>
+<nav>
+    <div class="navBar">
+        <h1>Campus Life Planner</h1>
+        <button class="hamburger" id="hamburger" aria-controls="navLinks" aria-expanded="false" aria-label="toggle menu">☰</button>
+        <ul class="navLinks" id="navLinks">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="addForm.html">Add New</a></li>
+            <li><a href="tasks.html">All Tasks</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+</nav>
+</header>
+<main>
+    <div id="statusMessage" role="status" aria-live="polite" aria-atomic="true"></div>
+    <section class="controls">
+        <label for="searchTasks">Search:</label>
+        <input class="searchTasks" id="searchTasks" type="text" placeholder="Search here...">
+
+        <div class="sort">
+            <label for="sortBy">Sort By:</label>
+            <select id="sortBy">
+                <option value="dueDate">Due Date</option>
+                <option value="title">Title</option>
+                <option value="tag">Tag</option>
+            </select>
+        </div>
+    </section>
+
+    <section>
+        <h2>All Tasks</h2>
+        <div class="taskTable" id="taskTable">
+
+        </div>
+    </section>
+</main>
+<footer>
+    <section class="contact">
+        <p>Made by Abigail Salem</p>
+        <a href="https://github.com/">My GitHub</a>
+    </section>
+</footer>
+<script type="module" src="scripts/main.js"></script>
+<script type="module" src="scripts/storage.js"></script>
+<script type="module" src="scripts/taskList.js"></script>
+<script type="module" src="scripts/search.js"></script>
+</body>
+</html>

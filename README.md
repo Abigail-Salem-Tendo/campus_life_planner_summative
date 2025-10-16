@@ -26,6 +26,7 @@ a timestamp and date of when each task was created and updated.
 "duration": 90,
 "tag": "Extracurricular",
 "dueDate": "2025-10-09",
+"completed: false
 "createdAt": "2025-10-07T08:00:00Z",
 "updatedAt": "2025-10-07T08:00:00Z"
 }
@@ -38,4 +39,25 @@ a timestamp and date of when each task was created and updated.
 - Use proper semantic HTML tags to structure my pages, helping assistive technologies navigate content correctly.
 - Make sure interactive elements are usable with the keyboard
 - Use aria-live for status updates
-- Write meaningful alt text for all images, especially for profile and project images.
+
+***Installation & Setup***
+1. Clone the repository:
+
+```angular2html
+https://github.com/Abigail-Salem-Tendo/campus_life_planner_summative.git
+```
+
+2. Open the index.html in a browser
+
+3. No Additional server is required since this project is plain HTML, CSS, and JavaScript
+
+
+***Usage***
+- Navigate the app using keyboard or mouse
+- Add a new task via the Add New form
+- Sort and search tasks on the All Tasks page
+- Check Dashboard statistics
+
+
+***Demo***
+**Demo Video:** 

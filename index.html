@@ -2,9 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Planner | Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
+<div class="container">
+    <header>
+        <nav>
+            <div class="navBar">
+                <h1>Campus Life Planner</h1>
+                <button class="hamburger" id="hamburger" aria-controls="navLinks" aria-expanded="false" aria-label="toggle menu">☰</button>
+                <ul class="navLinks" id="navLinks">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="addForm.html">Add New</a></li>
+                    <li><a href="tasks.html">All Tasks</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
 
+    <main>
+        <section class="greeting">
+            <h1>Campus Life</h1>
+            <p>Welcome back Abby! Here's how your week looks like now.</p>
+        </section>
+        <!-- this section has the weekly overview of the users data -->
+        <section id="weeklyStats">
+            <h2>Weekly Overview</h2>
+            <div class="weeklyStats">
+                <div class="statCard">
+                    <p class="statTitle">Completed</p>
+                    <p class="statValue" id="completedTasks" role="status" aria-live="polite"></p>
+                </div>
+                <div class="statCard">
+                    <p class="statTitle">Frequent Tag</p>
+                    <p class="statValue" id="frequentTag" role="status" aria-live="polite"></p>
+                </div>
+                <div class="statCard">
+                    <p class="statTitle">Overdue</p>
+                    <p class="statValue" id="overdueTasks" role="status" aria-live="polite"></p>
+                </div>
+            </div>
+        </section>
+        <!-- This section has the tasks for that particular day -->
+        <section id="todaysTasks">
+            <h2>Here are you tasks for today.</h2>
+            <div class="todaysTasks">
+                <ul class="todaysTasksList" id="todaysTasksList" role="tablist" aria-live="polite">
+
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <section class="contact">
+            <p>Made by Abigail Salem</p>
+            <a href="https://github.com/">My GitHub</a>
+        </section>
+    </footer>
+</div>
+<script type="module" src="scripts/main.js"></script>
+<script type="module" src="scripts/dashboard.js"></script>
+<script type="module" src="scripts/storage.js"></script>
 </body>
 </html>

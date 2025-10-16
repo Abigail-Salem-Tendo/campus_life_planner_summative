@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Life Planner | Add New</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+        <nav>
+            <div class="navBar">
+                <h1>Campus Life Planner</h1>
+                <button class="hamburger" id="hamburger" aria-controls="navLinks" aria-expanded="false" aria-label="toggle menu">☰</button>
+                <ul class="navLinks" id="navLinks">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="addForm.html">Add New</a></li>
+                    <li><a href="tasks.html">All Tasks</a></li>
+                    <li><a href="settings.html">Settings</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+        </nav>
+        </header>
+        <main>
+            <section class="formSection">
+                <div id="statusMessage" role="status" aria-live="polite"></div>
+                <h2>Add New Task</h2>
+
+                <form id="taskForm" class="taskForm">
+                    <div class="formGroup">
+                        <label for="taskTitle">Task Title</label>
+                        <input type="text" id="taskTitle" name="taskTitle" placeholder="Task title" required aria-required="true">
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="dueDate">Due Date</label>
+                        <input type="date" id="dueDate" name="dueDate" required aria-required="true">
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="duration">Duration</label>
+                        <input type="number" id="duration" name="duration" required aria-required="true">
+                    </div>
+
+                    <div class="formGroup">
+                        <label for="tag">Tag</label>
+                        <input type="text" id="tag" name="tag" required aria-required="true" placeholder="Study/Project">
+                    </div>
+
+                    <div class="formActions">
+                        <button type="submit" class="btn saveBtn" aria-label="Save Task">Save Task</button>
+                        <button type="button" class="btn cancelBtn" aria-label="Cancel">Cancel</button>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <section class="contact">
+                <p>Made by Abigail Salem</p>
+                <a href="https://github.com/">My GitHub</a>
+            </section>
+        </footer>
+    </div>
+<script type="module" src="scripts/main.js"></script>
+<script type="module" src="scripts/storage.js"></script>
+<script type="module" src="scripts/addForm.js"></script>
+<script type="module" src="scripts/validators.js"></script>
+</body>
+</html>
