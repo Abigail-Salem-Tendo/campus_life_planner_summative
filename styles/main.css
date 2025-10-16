@@ -24,12 +24,12 @@ section {
 
 /* Navigation */
 .navBar {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #BE97C6; /* main lilac */
     padding: 0.75rem 1rem;
-    border-radius: 10px;
 }
 
 .navLinks {
@@ -141,7 +141,7 @@ section {
 
 /* Task cards */
 .taskCard {
-    background-color: #59afa7; /* teal accent */
+    background-color: #5d3a6b; /* teal accent */
     color: #fff;
     padding: 0.5rem 0.5rem;
     margin-bottom: 1rem;
@@ -162,4 +162,68 @@ section {
 
 .taskActions {
     display: flex;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 1.1rem;
+    }
+
+    .navLinks {
+        flex-direction: row;
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .taskCard {
+        max-width: 80%;
+        margin: 1rem auto;
+    }
+
+    .formGroup input,
+    .formGroup select {
+        width: 70%
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        font-size: 1.2rem;
+        padding: 0 3rem;
+    }
+
+    header, main, footer {
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+
+    .navBar {
+        justify-content: space-between;
+    }
+
+    .navLinks {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+    }
+
+    .taskTable {
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 1rem;
+    }
+
+    .taskCard {
+        max-width: 100%;
+    }
+
+    .formGroup input,
+    .formGroup select {
+        width: 60%;
+    }
 }
