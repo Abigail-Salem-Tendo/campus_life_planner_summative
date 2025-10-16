@@ -1,5 +1,6 @@
 import { loadTasks } from "./storage.js";
 import { initializeSeedJson } from "./storage.js";
+import { loadSettings } from "./settings.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
     const tasks = await initializeSeedJson();
