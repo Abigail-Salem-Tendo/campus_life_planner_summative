@@ -224,6 +224,18 @@ section {
         padding: 0 3rem;
     }
 
+    footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        padding: 1.5rem 2rem;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
     header, main, footer {
         max-width: 1000px;
         margin: 0 auto;
