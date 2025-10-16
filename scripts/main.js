@@ -1,12 +1,13 @@
 // this file contains the logic of the hamburger menu
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');
 
-    hamburger.addEventListener('click', (e) => {
-        navLinks.classList.toggle('show');
-        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-        hamburger.setAttribute('aria-expanded', !expanded);
-        //hamburger.classList.toggle('active');
-    });
+    hamburger.addEventListener('click', () => {
+        const isOpen = navLinks.classList.toggle('show')
+        hamburger.setAttribute('aria-expanded', isOpen)
+
+        hamburger.style.display = isOpen ? 'none' : 'block';
+    })
+
 });

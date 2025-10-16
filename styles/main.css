@@ -1,3 +1,4 @@
+/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -6,47 +7,48 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #F4F3EE;
-    color: #7574FF;
+    background-color: #F4F3EE; /* light neutral background */
+    color: #5D3A6B; /* darker purple for text */
     font-size: 1rem;
-    margin: 0;
-    padding: 0;
     max-width: 100%;
 }
 
+/* Layout spacing */
 header, main, footer {
-    padding: 0.75rem;
+    padding: 1rem;
 }
 
 section {
     margin-bottom: 2rem;
 }
 
-.navLinks {
-    display: none;
-    gap: 1rem;
-    width: 100%;
-    list-style: none;
-}
-
-.navLinks a {
-    text-decoration: none;
-    color: #7574FF;
-    padding: 0.5rem;
-    font-weight: bold;
-}
-
+/* Navigation */
 .navBar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #2b5698;
+    background-color: #BE97C6; /* main lilac */
     padding: 0.75rem 1rem;
+    border-radius: 10px;
+}
+
+.navLinks {
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
 }
 
 .navLinks.show {
     display: flex;
     flex-direction: column;
+}
+
+.navLinks a {
+    text-decoration: none;
+    color: #5D3A6B; /* dark purple for contrast */
+    padding: 0.5rem;
+    font-weight: bold;
 }
 
 .hamburger {
@@ -56,52 +58,108 @@ section {
     cursor: pointer;
     font-size: 1.6rem;
     padding: 0.5rem;
+    color: #5D3A6B; /* dark purple for visibility */
 }
 
+/* Weekly stats */
 .weeklyStats {
     display: flex;
-    gap: 0.75rem;
+    gap: 1rem;
     margin-top: 1rem;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-/* Styling the add form page */
+.statCard {
+    background-color: #FF87C1; /* bright pink accent */
+    color: #fff;
+    padding: 1rem;
+    border-radius: 10px;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+}
+
+.statTitle {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.statValue {
+    font-size: 1.25rem;
+}
+
+/* Form styling */
 .formGroup {
     display: flex;
     flex-direction: column;
     margin-bottom: 1.5rem;
 }
 
-.formGroup input {
-    padding: 0.5rem;
-    border: 1px solid #2a5698;
-    border-radius: 5px;
-}
 .formGroup label {
     font-weight: bold;
     margin-bottom: 0.5rem;
 }
 
-.formActions {
-    display: flex;
-    flex-direction: column;
-    margin: 1.5rem 0;
-    gap: 0.75rem;
+.formGroup input,
+.formGroup select {
+    padding: 0.5rem;
+    border: 1px solid #5D3A6B; /* dark purple border */
+    border-radius: 5px;
+    font-size: 1rem;
 }
 
+/* Buttons */
 .btn {
     border: none;
     padding: 0.5rem 0.5rem;
     border-radius: 10px;
     font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .saveBtn {
-    background-color: #2b5698;
-    color: #d6cfcf;
+    background-color: #BE97C6; /* lilac main */
+    color: #fff; /* white text for contrast */
+    transition: background 0.3s;
+}
+
+.saveBtn:hover {
+    background-color: #5D3A6B; /* dark purple on hover */
 }
 
 .cancelBtn {
-    background-color: transparent;
+    background-color: #FF87C1; /* bright pink */
+    color: #fff;
+    transition: background 0.3s;
+}
+
+.cancelBtn:hover {
+    background-color: #BE97C6; /* lilac hover */
+}
+
+/* Task cards */
+.taskCard {
+    background-color: #59afa7; /* teal accent */
+    color: #fff;
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.taskInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.taskInfo p {
+    font-size: 1rem;
+}
+
+.taskActions {
+    display: flex;
 }
