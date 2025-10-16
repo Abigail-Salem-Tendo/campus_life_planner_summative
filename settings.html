@@ -7,25 +7,28 @@
     <title>Campus Life Planner | Settings</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul class="navLinks">
+<header>
+    <nav>
+        <div class="navBar">
+            <h1>Campus Life Planner</h1>
+            <button class="hamburger" id="hamburger">☰</button>
+            <ul class="navLinks" id="navLinks">
                 <li><a href="index.html">Dashboard</a></li>
                 <li><a href="addForm.html">Add New</a></li>
                 <li><a href="tasks.html">All Tasks</a></li>
                 <li><a href="settings.html">Settings</a></li>
                 <li><a href="about.html">About</a></li>
             </ul>
-        </nav>
-    </header>
-
+        </div>
+    </nav>
+</header>
     <section>
         <div class="settingsCard">
             <h1>Settings</h1>
             <form id="settingsForm">
                 <div class="formGroup">
-                    <label for="durarionUnit"> Duration</label>
-                    <select id="durarionUnit" name="durarionUnit" required>
+                    <label for="durationUnit"> Duration</label>
+                    <select id="durationUnit" name="durationUnit" required>
                         <option value="minutes">Minutes (min)</option>
                         <option value="hours">Hours (hrs)</option>
                     </select>
@@ -36,12 +39,10 @@
                 </div>
 
                 <div class="formGroup">
-                    <button type="submit" class="saveBtn"> Save Settings</button>
+                    <button type="submit" class="saveBtn">Save Settings</button>
                 </div>
             </form>
         </div>
-
-
     </section>
 
 <script type="module" src="scripts/main.js"></script>

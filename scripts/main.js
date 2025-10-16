@@ -1,3 +1,4 @@
+// this file contains the logic of the hamburger menu
 document.addEventListener('DOMContentLoaded', (event) => {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('navLinks');

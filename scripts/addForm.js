@@ -1,72 +1,49 @@
 //This file will handle saving a new task and display a success message
 
-import { loadTasks, saveTasks, generateUniqueId } from "./storage.js";
+import { loadTasks, saveTasks, generateUniqueId } from "./storage.js";// import helper functions from storage.js
+//import the validation function to validate user input
 import { validateTaskForm } from "./validators.js";
 
+//This wait for the page to load completely before running the code
 document.addEventListener("DOMContentLoaded", () => {
     const taskForm = document.getElementById('taskForm');
-    const statusMessage = document.getElementById('statusMessage');
 
-    if (!taskForm) return;
-
+    // get the form input html elements
     const taskTitle = document.getElementById('taskTitle');
     const dueDate = document.getElementById('dueDate');
     const duration = document.getElementById('duration');
     const tag = document.getElementById('tag');
 
-    statusMessage.style.display = 'none';
-
     taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+        e.preventDefault(); // prevent the page from reload after submission
 
-        const formData = {
+        const formData = { // creating an object with the input values
             title: taskTitle.value.trim(),
             dueDate: dueDate.value,
             duration: duration.value,
             tag: tag.value.trim(),
         };
 
-        const validationErrors = validateTaskForm(formData);
+        if (!validateTaskForm(formData)) return
 
-        if (validationErrors.length > 0) {
 
-            statusMessage.style.backgroundColor = '#fce3e6';
-            statusMessage.style.color = '#cc0033';
-
-            statusMessage.textContent = validationErrors.join('\n');
-            statusMessage.style.display = 'block';
-
-            return;
-        }
-
+        // creating a new object with all the required values
         const newTask = {
             id: generateUniqueId(),
-            title: taskTitle.value.trim(),
-            dueDate: dueDate.value.trim(),
-            duration: duration.value.trim(),
-            tag: tag.value.trim(),
+            title: formData.title,
+            dueDate: formData.dueDate,
+            duration: formData.duration,
+            tag: formData.tag,
             completed: false, //adding a new field
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };
 
-        //save the new task
-        const tasks = loadTasks();
-        tasks.push(newTask);
-        saveTasks(tasks);
-
-        //displaying the success message
-        statusMessage.style.backgroundColor = '#a8d39b';
-        statusMessage.style.color = 'green';
-        statusMessage.textContent = "Successfully added a new task";
-        statusMessage.style.display = 'block';
+        const tasks = loadTasks(); // getting the existing tasks
+        tasks.push(newTask); // adds the new task
+        saveTasks(tasks); // saves all the tasks
 
         //reset the form
         taskForm.reset();
-        setTimeout(() => {
-            statusMessage.style.display = 'none';
-            statusMessage.textContent = '';
-        }, 4000);
     });
-
 })
