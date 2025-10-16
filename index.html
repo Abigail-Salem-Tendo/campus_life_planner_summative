@@ -35,15 +35,15 @@
             <div class="weeklyStats">
                 <div class="statCard">
                     <p class="statTitle">Completed</p>
-                    <p class="statValue">3</p>
+                    <p class="statValue" id="completedTasks">3</p>
                 </div>
                 <div class="statCard">
                     <p class="statTitle">Frequent Tag</p>
-                    <p class="statValue">Study</p>
+                    <p class="statValue" id="overdueTasks">Study</p>
                 </div>
                 <div class="statCard">
                     <p class="statTitle">Overdue</p>
-                    <p class="statValue">1</p>
+                    <p class="statValue" id="frequentTag">1</p>
                 </div>
             </div>
         </section>
@@ -72,6 +72,7 @@
         </section>
     </footer>
 </div>
-<script src="scripts/main.js"></script>
+<script type="module" src="scripts/main.js"></script>
+<script type="module" src="scripts/storage.js"></script>
 </body>
 </html>

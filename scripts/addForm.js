@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
             dueDate: dueDate.value.trim(),
             duration: duration.value.trim(),
             tag: tag.value.trim(),
+            completed: false, //adding a new field
             createdAt: new Date().toISOString(),
             updatedAt: new Date().toISOString(),
         };
