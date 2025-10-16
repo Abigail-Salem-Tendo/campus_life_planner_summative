@@ -21,6 +21,30 @@ export function saveTasks(tasks) {
     }
 }
 
+
+export async function initializeSeedJson() {
+    const seedData = localStorage.getItem(STORAGE_NAME);
+
+    if (!seedData || seedData === '[]') {
+        try {
+            const response = await fetch('../seed.json');
+            if (!response.ok) {
+                console.warn("could not find seed data");
+                return [];
+            }
+            const seedTasks = await response.json();
+
+            saveTasks(seedTasks);
+            return seedTasks;
+
+        } catch (error) {
+            console.error("Error loading the seed data", error);
+            return [];
+        }
+    }
+    return loadTasks();
+}
+
 export function generateUniqueId() {
     return 'task_' + Date.now() + Math.floor(Math.random() * 1000);
 }
