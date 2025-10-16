@@ -65,10 +65,15 @@ function displayStats(stats) {
     const maxTasks = settings.taskCap;
     // ids in html?
     //dashboard elements should be updated with calculated stats
-    const completed = document.getElementById('completedTasks').textContent = stats.tasksCompleted;
-    const overdue = document.getElementById('overdueTasks').textContent = stats.overdueTasks;
-    const frequent = document.getElementById('frequentTag').textContent = stats.frequentTag.toUpperCase();
+    const completed = document.getElementById('completedTasks')
+    const overdue = document.getElementById('overdueTasks')
+    const frequent = document.getElementById('frequentTag')
 
+    //Updating the stats
+    completed.textContent = stats.tasksCompleted;
+    overdue.textContent = stats.overdueTasks;
+    frequent.textContent = stats.frequentTag.toUpperCase();
+    completed.focus();
 // checking the total tasks with the target tasks
     const totalTasks = stats.totalTasks;
     const capmessage = document.getElementById('capmessage');
@@ -85,6 +90,7 @@ function displayStats(stats) {
             capmessage.style.color = 'red';
             capmessage.style.fontWeight = 'normal';
         }
+        completed.focus();
     }
     //target cap set in settings goes here
     console.log("Dashboard stats claculated", stats);

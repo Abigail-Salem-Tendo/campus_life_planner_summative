@@ -2,7 +2,7 @@
 
 import { loadTasks, saveTasks } from "./storage.js";
 import { searchTasks } from "./search.js";
-
+const statusMessage = document.getElementById("statusMessage");
 // Hold the current loaded tasks
 let currentTasks = [];
 
@@ -17,6 +17,10 @@ function updateTasks() {
     sortTasks(sortBy.value, displayList);
 // display the final sorted list on the page
     displayTasks(displayList);
+    //update the aria live region
+    if (statusMessage) {
+        statusMessage.textContent = `${displayList.length} tasks found,`;
+    }
 }
 
 // a function that deletes a task by its id and updates the storage
@@ -27,6 +31,11 @@ function deleteTask(id) {
     saveTasks(currentTasks);
 
     updateTasks();
+
+    //Update the aria live region
+    if (statusMessage) {
+        statusMessage.textContent = 'Task deleted successfully.';
+    }
 }
  // function to handle the click actions on the edit and delete buttons
 function handleAction(e) {
@@ -56,6 +65,13 @@ function completionToggle(e) {
         task.completed = e.target.checked;
         saveTasks(currentTasks);
         updateTasks();
+
+        //Update ARIA live
+        if (statusMessage) {
+            statusMessage.textContent = task.completed
+                ? `Task "${task.title}" marked complete.`
+                : `Task "${task.title}" marked incomplete.`;
+        }
     }
 }
 

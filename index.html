@@ -12,7 +12,7 @@
         <nav>
             <div class="navBar">
                 <h1>Campus Life Planner</h1>
-                <button class="hamburger" id="hamburger">☰</button>
+                <button class="hamburger" id="hamburger" aria-controls="navLinks" aria-expanded="false" aria-label="toggle menu">☰</button>
                 <ul class="navLinks" id="navLinks">
                     <li><a href="index.html">Dashboard</a></li>
                     <li><a href="addForm.html">Add New</a></li>
@@ -35,15 +35,15 @@
             <div class="weeklyStats">
                 <div class="statCard">
                     <p class="statTitle">Completed</p>
-                    <p class="statValue" id="completedTasks"></p>
+                    <p class="statValue" id="completedTasks" role="status" aria-live="polite"></p>
                 </div>
                 <div class="statCard">
                     <p class="statTitle">Frequent Tag</p>
-                    <p class="statValue" id="frequentTag"></p>
+                    <p class="statValue" id="frequentTag" role="status" aria-live="polite"></p>
                 </div>
                 <div class="statCard">
                     <p class="statTitle">Overdue</p>
-                    <p class="statValue" id="overdueTasks"></p>
+                    <p class="statValue" id="overdueTasks" role="status" aria-live="polite"></p>
                 </div>
             </div>
         </section>
@@ -51,7 +51,7 @@
         <section id="todaysTasks">
             <h2>Here are you tasks for today.</h2>
             <div class="todaysTasks">
-                <ul class="todaysTasksList">
+                <ul class="todaysTasksList" id="todaysTasksList" role="tablist" aria-live="polite">
 
                 </ul>
             </div>

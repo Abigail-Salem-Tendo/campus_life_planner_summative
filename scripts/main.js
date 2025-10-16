@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     hamburger.addEventListener('click', (e) => {
         navLinks.classList.toggle('show');
-        hamburger.classList.toggle('active');
+        const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+        hamburger.setAttribute('aria-expanded', !expanded);
+        //hamburger.classList.toggle('active');
     });
 });

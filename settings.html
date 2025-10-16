@@ -8,39 +8,40 @@
 </head>
 <body>
 <header>
-    <nav>
-        <div class="navBar">
-            <h1>Campus Life Planner</h1>
-            <button class="hamburger" id="hamburger">☰</button>
-            <ul class="navLinks" id="navLinks">
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="addForm.html">Add New</a></li>
-                <li><a href="tasks.html">All Tasks</a></li>
-                <li><a href="settings.html">Settings</a></li>
-                <li><a href="about.html">About</a></li>
-            </ul>
-        </div>
-    </nav>
+<nav>
+    <div class="navBar">
+        <h1>Campus Life Planner</h1>
+        <button class="hamburger" id="hamburger" aria-controls="navLinks" aria-expanded="false" aria-label="toggle menu">☰</button>
+        <ul class="navLinks" id="navLinks">
+            <li><a href="index.html">Dashboard</a></li>
+            <li><a href="addForm.html">Add New</a></li>
+            <li><a href="tasks.html">All Tasks</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+    </div>
+</nav>
 </header>
     <section>
         <div class="settingsCard">
             <h1>Settings</h1>
-            <form id="settingsForm">
+            <form id="settingsForm" aria-label="Settings Form">
                 <div class="formGroup">
-                    <label for="durationUnit"> Duration</label>
-                    <select id="durationUnit" name="durationUnit" required>
+                    <label for="durationUnits"> Duration</label>
+                    <select id="durationUnits" name="durationUnit" required aria-required="true">
                         <option value="minutes">Minutes (min)</option>
                         <option value="hours">Hours (hrs)</option>
                     </select>
                 </div>
                 <div class="formGroup">
                     <label for="taskCap">Weekly Task Target:</label>
-                    <input type="number" id="taskCap" name="taskCap" required>
+                    <input type="number" id="taskCap" name="taskCap" required aria-required="true">
                 </div>
 
                 <div class="formGroup">
-                    <button type="submit" class="saveBtn">Save Settings</button>
+                    <button type="submit" class="saveBtn" id="saveBtn">Save Settings</button>
                 </div>
+                <div id="settingMessage" role="status" aria-live="polite"></div>
             </form>
         </div>
     </section>

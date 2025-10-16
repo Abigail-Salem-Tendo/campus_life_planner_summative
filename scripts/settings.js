@@ -1,11 +1,11 @@
 // this module manages saving and updating the app settings in local storage
-const settings = 'appSettings'; // this is the key name for storing the settings
+const settingsKey = 'appSettings'; // this is the key name for storing the settings
 
 // a function to load saved settings
 export function loadSettings() {
     try{
         //get the settings stored in local storage
-        const storedSettings = localStorage.getItem(settings);
+        const storedSettings = localStorage.getItem(settingsKey);
         // if they exist parse them to JSON format
         if (storedSettings) {
             return JSON.parse(storedSettings);
@@ -22,40 +22,41 @@ export function loadSettings() {
 // function to save the users settings to local storage
 export function saveSettings(Newsettings) {
     try {
-        localStorage.setItem('appSettings', JSON.stringify(Newsettings));
+        localStorage.setItem(settingsKey, JSON.stringify(Newsettings));
         console.log("Settings saved", Newsettings)
     } catch (e) {
         console.error("Error saving settings:", e);
     }
 }
-// set the default settings
-const defaultSettings = {
-    taskCap: 15,
-    durationUnits: 'minutes'
-}
+
 
 // save the default settings
 document.addEventListener('DOMContentLoaded', () => {
     const taskCap = document.getElementById('taskCap');
-    const durationUnits = document.getElementById('durationUnit');
-    const saveButton = document.querySelector('.saveBtn');
+    const durationUnits = document.getElementById('durationUnits');
+    const saveButton = document.getElementById('saveBtn');
+    const statusMessage = document.getElementById('statusMessage');
 
-    if (!taskCap || !durationUnits || !saveButton) {
+    if (!taskCap || !durationUnits || !saveButton || !statusMessage) {
         console.error("Error loading missing html element");
         return;
     }
 
     const settings = loadSettings();
     taskCap.value = settings.taskCap ?? 15;
-    durationUnits.value = settings.durationUnit ?? 'minutes';
+    durationUnits.value = settings.durationUnits ?? 'minutes';
 
-    saveButton.addEventListener('click', () => {
+    saveButton.addEventListener('click', (e) => {
+        e.preventDefault();
+
         const newSettings = {
             taskCap: Number(taskCap.value),
             durationUnits: durationUnits.value,
         }
         saveSettings(newSettings);
         //localStorage.setItem('appSettings', JSON.stringify(newSettings));
-        alert("Settings saved successfully")
+        statusMessage.textContent = "Settings saved successfully.";
+        statusMessage.style.display = 'absolute';
+
     });
 })
