@@ -60,4 +60,5 @@ https://github.com/Abigail-Salem-Tendo/campus_life_planner_summative.git
 
 
 ***Demo***
-**Demo Video:** 
+
+**Demo Video:**  https://youtu.be/DHqLtfXkD6s
