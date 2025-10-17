@@ -35,7 +35,7 @@ export async function initializeSeedJson() {
     if (!seedData || seedData === '[]') {
         try {
             // get the default seed data from the json file
-            const response = await fetch('../seed.json');
+            const response = await fetch('/seed.json');
             // handle missing JSON files gracefully
             if (!response.ok) {
                 console.warn("could not find seed data");

@@ -26,7 +26,7 @@ export function validateTaskForm(formData) {
     }
     // validate tag/category input
     if (!regexTag.test(formData.tag)) {
-        alert("Please select a category");
+        alert("Please type one word for the tag.");
         return false;
     }
     // the word urgent not allowed
