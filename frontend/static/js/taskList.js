@@ -1,6 +1,6 @@
 //this script will load the data and display it on the taskpage
 
-import { loadTasks, saveTasks } from "./storage.js";
+import { loadTasks, deleteTask as apiDeleteTask, toggleTaskCompletion } from "./storage.js";
 import { searchTasks } from "./search.js";
 const statusMessage = document.getElementById("statusMessage");
 // Hold the current loaded tasks
@@ -23,18 +23,26 @@ function updateTasks() {
     }
 }
 
-// a function that deletes a task by its id and updates the storage
-function deleteTask(id) {
-    // filter out tasks that match the id
-    currentTasks = currentTasks.filter(task => task.id !== id);
-    // save the new task list
-    saveTasks(currentTasks);
+// a function that deletes a task by its id and updates via API
+async function deleteTask(id) {
+    try {
+        // Delete from backend
+        await apiDeleteTask(id);
+        
+        // Remove from current tasks array
+        currentTasks = currentTasks.filter(task => task.id !== id);
+        
+        updateTasks();
 
-    updateTasks();
-
-    //Update the aria live region
-    if (statusMessage) {
-        statusMessage.textContent = 'Task deleted successfully.';
+        //Update the aria live region
+        if (statusMessage) {
+            statusMessage.textContent = 'Task deleted successfully.';
+        }
+    } catch (error) {
+        console.error('Error deleting task:', error);
+        if (statusMessage) {
+            statusMessage.textContent = 'Failed to delete task.';
+        }
     }
 }
  // function to handle the click actions on the edit and delete buttons
@@ -55,32 +63,47 @@ function handleAction(e) {
     }
 }
 
-function completionToggle(e) {
+async function completionToggle(e) {
     if (!e.target.classList.contains('taskComplete')) return
 
     const taskId = e.target.getAttribute('data-id');
     const task = currentTasks.find(t => t.id === taskId);
 
     if (task) {
-        task.completed = e.target.checked;
-        saveTasks(currentTasks);
-        updateTasks();
+        const newCompletedStatus = e.target.checked;
+        
+        try {
+            // Update in backend
+            await toggleTaskCompletion(taskId, newCompletedStatus);
+            
+            // Update local state
+            task.completed = newCompletedStatus;
+            updateTasks();
 
-        //Update ARIA live
-        if (statusMessage) {
-            statusMessage.textContent = task.completed
-                ? `Task "${task.title}" marked complete.`
-                : `Task "${task.title}" marked incomplete.`;
+            //Update ARIA live
+            if (statusMessage) {
+                statusMessage.textContent = task.completed
+                    ? `Task "${task.title}" marked complete.`
+                    : `Task "${task.title}" marked incomplete.`;
+            }
+        } catch (error) {
+            console.error('Error toggling task completion:', error);
+            // Revert checkbox if API call failed
+            e.target.checked = !newCompletedStatus;
+            if (statusMessage) {
+                statusMessage.textContent = 'Failed to update task status.';
+            }
         }
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
     const taskTable = document.getElementById('taskTable')
     const sortBy = document.getElementById('sortBy')
     const searchInput = document.getElementById('searchTasks');
-    //load existing tasks
-    currentTasks = loadTasks();
+    
+    //load existing tasks from API
+    currentTasks = await loadTasks();
 
     //display tasks when the page loads
     updateTasks()

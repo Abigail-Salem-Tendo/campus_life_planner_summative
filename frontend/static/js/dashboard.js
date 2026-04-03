@@ -1,13 +1,12 @@
 // this file contains the logic of the dashboard and statistics page
-import { loadTasks } from "./storage.js";
-import { initializeSeedJson } from "./storage.js";
-import { loadSettings } from "./settings.js";
+import { loadTasks, loadSettings } from "./storage.js";
 
 document.addEventListener('DOMContentLoaded', async () => {
-    const tasks = await initializeSeedJson(); // gets tasks from the seed.json file
+    const tasks = await loadTasks(); // gets tasks from the backend API
+    const settings = await loadSettings(); // gets settings from the backend API
     const stats = calculatedStats(tasks); // calculates the completed, overdue, and most frequent tags
     // display the stats on the dashboard
-    displayStats(stats);
+    displayStats(stats, settings);
 });
 
 //function the returns the date of one week ago
@@ -59,9 +58,8 @@ function calculatedStats(tasks) {
 }
 
 // A function that displays that stats on the dashboard
-function displayStats(stats) {
-    // load the users settings
-    const settings = loadSettings();
+function displayStats(stats, settings) {
+    // Use the settings passed from the async call
     const maxTasks = settings.taskCap;
     // ids in html?
     //dashboard elements should be updated with calculated stats

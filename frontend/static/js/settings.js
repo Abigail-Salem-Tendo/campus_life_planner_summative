@@ -1,37 +1,8 @@
-// this module manages saving and updating the app settings in local storage
-const settingsKey = 'appSettings'; // this is the key name for storing the settings
+// this module manages saving and updating the app settings via API
+import { loadSettings, saveSettings } from "./storage.js";
 
-// a function to load saved settings
-export function loadSettings() {
-    try{
-        //get the settings stored in local storage
-        const storedSettings = localStorage.getItem(settingsKey);
-        // if they exist parse them to JSON format
-        if (storedSettings) {
-            return JSON.parse(storedSettings);
-        }
-    } catch (e) { // catch any errors
-        console.error("Error loading settings:", e);
-    }
-
-    return { // return default settings if an error occurs
-        taskCap: 15,
-        durationUnits: 'minutes'
-    };
-}
-// function to save the users settings to local storage
-export function saveSettings(Newsettings) {
-    try {
-        localStorage.setItem(settingsKey, JSON.stringify(Newsettings));
-        console.log("Settings saved", Newsettings)
-    } catch (e) {
-        console.error("Error saving settings:", e);
-    }
-}
-
-
-// save the default settings
-document.addEventListener('DOMContentLoaded', () => {
+// save the settings using the API
+document.addEventListener('DOMContentLoaded', async () => {
     const taskCap = document.getElementById('taskCap');
     const durationUnits = document.getElementById('durationUnits');
     const saveButton = document.getElementById('saveBtn');
@@ -42,21 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    const settings = loadSettings();
-    taskCap.value = settings.taskCap ?? 15;
-    durationUnits.value = settings.durationUnits ?? 'minutes';
+    // Load settings from API
+    try {
+        const settings = await loadSettings();
+        taskCap.value = settings.taskCap ?? 15;
+        durationUnits.value = settings.durationUnits ?? 'minutes';
+    } catch (error) {
+        console.error("Error loading settings:", error);
+        // Use defaults if loading fails
+        taskCap.value = 15;
+        durationUnits.value = 'minutes';
+    }
 
-    saveButton.addEventListener('click', (e) => {
+    saveButton.addEventListener('click', async (e) => {
         e.preventDefault();
 
         const newSettings = {
             taskCap: Number(taskCap.value),
             durationUnits: durationUnits.value,
         }
-        saveSettings(newSettings);
-        //localStorage.setItem('appSettings', JSON.stringify(newSettings));
-        statusMessage.textContent = "Settings saved successfully.";
-        statusMessage.style.display = 'absolute';
 
+        try {
+            // Save to backend API
+            await saveSettings(newSettings);
+            statusMessage.textContent = "Settings saved successfully.";
+            statusMessage.style.display = 'block';
+            statusMessage.style.color = 'green';
+        } catch (error) {
+            console.error("Error saving settings:", error);
+            statusMessage.textContent = "Failed to save settings.";
+            statusMessage.style.display = 'block';
+            statusMessage.style.color = 'red';
+        }
     });
 })

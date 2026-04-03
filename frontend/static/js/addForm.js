@@ -1,6 +1,6 @@
 //This file will handle saving a new task and display a success message
 
-import { loadTasks, saveTasks, generateUniqueId } from "./storage.js";// import helper functions from storage.js
+import { createTask, generateUniqueId } from "./storage.js";// import helper functions from storage.js
 //import the validation function to validate user input
 import { validateTaskForm } from "./validators.js";
 
@@ -14,13 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const duration = document.getElementById('duration');
     const tag = document.getElementById('tag');
 
-    taskForm.addEventListener('submit', (e) => {
+    taskForm.addEventListener('submit', async (e) => {
         e.preventDefault(); // prevent the page from reload after submission
 
         const formData = { // creating an object with the input values
             title: taskTitle.value.trim(),
             dueDate: dueDate.value,
-            duration: duration.value,
+            duration: parseInt(duration.value),
             tag: tag.value.trim(),
         };
 
@@ -39,11 +39,21 @@ document.addEventListener("DOMContentLoaded", () => {
             updatedAt: new Date().toISOString(),
         };
 
-        const tasks = loadTasks(); // getting the existing tasks
-        tasks.push(newTask); // adds the new task
-        saveTasks(tasks); // saves all the tasks
+        try {
+            // Save the new task to the backend API
+            await createTask(newTask);
 
-        //reset the form
-        taskForm.reset();
+            //reset the form
+            taskForm.reset();
+
+            // Show success message (optional)
+            alert('Task created successfully!');
+
+            // Redirect to tasks page to see the new task
+            window.location.href = 'tasks.html';
+        } catch (error) {
+            console.error('Error creating task:', error);
+            alert('Failed to create task. Please try again.');
+        }
     });
 })
