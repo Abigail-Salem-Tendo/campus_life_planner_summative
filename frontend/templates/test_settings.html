@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+        }
+
+        #output {
+            background: #f0f0f0;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Settings API Test</h1>
+
+    <button onclick="testGetSettings()">1. Get Settings</button>
+    <button onclick="testUpdateToHours()">2. Update to Hours</button>
+    <button onclick="testUpdateToMinutes()">3. Update to Minutes</button>
+
+    <div id="output"></div>
+
+    <script>
+        const API_BASE = 'http://localhost:5000/api';
+        const output = document.getElementById('output');
+
+        function log(message) {
+            output.innerHTML += `<div>${new Date().toLocaleTimeString()}: ${message}</div>`;
+        }
+
+        async function testGetSettings() {
+            try {
+                const response = await fetch(`${API_BASE}/settings`);
+                const data = await response.json();
+                log(`✅ GET Settings: ${JSON.stringify(data)}`);
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+
+        async function testUpdateToHours() {
+            try {
+                const response = await fetch(`${API_BASE}/settings`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ taskCap: 15, durationUnits: 'hours' })
+                });
+                const data = await response.json();
+                log(`✅ Updated to hours: ${JSON.stringify(data)}`);
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+
+        async function testUpdateToMinutes() {
+            try {
+                const response = await fetch(`${API_BASE}/settings`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ taskCap: 15, durationUnits: 'minutes' })
+                });
+                const data = await response.json();
+                log(`✅ Updated to minutes: ${JSON.stringify(data)}`);
+            } catch (error) {
+                log(`❌ Error: ${error.message}`);
+            }
+        }
+    </script>
+</body>
+
+</html>

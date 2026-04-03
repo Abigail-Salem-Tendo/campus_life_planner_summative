@@ -7,7 +7,7 @@ const statusMessage = document.getElementById("statusMessage");
 let currentTasks = [];
 
 // Update the displayed tasks based on sort or search
-function updateTasks() {
+async function updateTasks() {
     const sortBy = document.getElementById("sortBy");
     const searchInput = document.getElementById("searchTasks");
     const searchText = searchInput ? searchInput.value : "";
@@ -16,7 +16,7 @@ function updateTasks() {
     // sort the filtered tasks (title, tag, due date)
     sortTasks(sortBy.value, displayList);
 // display the final sorted list on the page
-    displayTasks(displayList);
+    await displayTasks(displayList);
     //update the aria live region
     if (statusMessage) {
         statusMessage.textContent = `${displayList.length} tasks found,`;
@@ -32,7 +32,7 @@ async function deleteTask(id) {
         // Remove from current tasks array
         currentTasks = currentTasks.filter(task => task.id !== id);
         
-        updateTasks();
+        await updateTasks();
 
         //Update the aria live region
         if (statusMessage) {
@@ -78,7 +78,7 @@ async function completionToggle(e) {
             
             // Update local state
             task.completed = newCompletedStatus;
-            updateTasks();
+            await updateTasks();
 
             //Update ARIA live
             if (statusMessage) {
@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentTasks = await loadTasks();
 
     //display tasks when the page loads
-    updateTasks()
+    await updateTasks()
     // display tasks again each time the user changes the sorting
     sortBy.addEventListener('change', updateTasks);
 
@@ -135,13 +135,28 @@ function sortTasks(key, tasksList) {
 }
 
 // display the html of all the tasks
-function displayTasks(tasks) {
+async function displayTasks(tasks) {
     const taskTable = document.getElementById('taskTable')
     // show a message if there are no tasks
     if (tasks.length === 0) {
         taskTable.innerHTML = '<p class="infoMessage">No tasks found. Add a new one!</p>';
         return;
     }
+
+    // Load settings to determine duration unit display
+    const { loadSettings } = await import('./storage.js');
+    const settings = await loadSettings();
+    const isHours = settings.durationUnits === 'hours';
+
+    // Helper function to format duration
+    const formatDuration = (minutes) => {
+        if (isHours) {
+            const hours = (minutes / 60).toFixed(1);
+            return `${hours} hrs`;
+        }
+        return `${minutes} min`;
+    };
+
 // creating the html for each task but is it necessary in the javascript file
     const taskHtml = tasks.map(task => `
         <div class="taskCard" data-id="${task.id}">
@@ -149,7 +164,7 @@ function displayTasks(tasks) {
                 <input type="checkbox" class="taskComplete" data-id="${task.id}" ${task.completed ? 'checked' : ''}> 
                 <div class="taskDetails">
                     <h3>${task.title}</h3>
-                    <p>Due: ${task.dueDate} | Duration: ${task.duration} min</p>
+                    <p>Due: ${task.dueDate} | Duration: ${formatDuration(task.duration)}</p>
                 </div>
             </div>
             <div class="taskActions">
