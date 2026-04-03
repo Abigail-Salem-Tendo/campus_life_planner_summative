@@ -1,0 +1,12 @@
+# Flask and Web Framework Dependencies
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# Database ORM
+SQLAlchemy==2.0.23
+
+# Date and Time utilities
+python-dateutil==2.8.2
+
+# Development tools (optional but helpful)
+python-dotenv==1.0.0
