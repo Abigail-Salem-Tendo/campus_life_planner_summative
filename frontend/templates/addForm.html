@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Campus Life Planner | Add New</title>
     <link rel="stylesheet" href="../static/css/main.css">
 </head>
+
 <body>
     <div class="container">
         <header>
-        <nav>
-            <div class="navBar">
-                <h1>Campus Life Planner</h1>
-                <button class="hamburger" id="hamburger" aria-controls="navLinks" aria-expanded="false" aria-label="toggle menu">☰</button>
-                <ul class="navLinks" id="navLinks">
-                    <li><a href="index.html">Dashboard</a></li>
-                    <li><a href="addForm.html">Add New</a></li>
-                    <li><a href="tasks.html">All Tasks</a></li>
-                    <li><a href="settings.html">Settings</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </div>
-        </nav>
+            <nav>
+                <div class="navBar">
+                    <h1>Campus Life Planner</h1>
+                    <button class="hamburger" id="hamburger" aria-controls="navLinks" aria-expanded="false"
+                        aria-label="toggle menu">☰</button>
+                    <ul class="navLinks" id="navLinks">
+                        <li><a href="index.html">Dashboard</a></li>
+                        <li><a href="addForm.html">Add New</a></li>
+                        <li><a href="tasks.html">All Tasks</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="about.html">About</a></li>
+                    </ul>
+                </div>
+            </nav>
         </header>
         <main>
             <section class="formSection">
@@ -31,7 +34,8 @@
                 <form id="taskForm" class="taskForm">
                     <div class="formGroup">
                         <label for="taskTitle">Task Title</label>
-                        <input type="text" id="taskTitle" name="taskTitle" placeholder="Task title" required aria-required="true">
+                        <input type="text" id="taskTitle" name="taskTitle" placeholder="Task title" required
+                            aria-required="true">
                     </div>
 
                     <div class="formGroup">
@@ -46,7 +50,8 @@
 
                     <div class="formGroup">
                         <label for="tag">Tag</label>
-                        <input type="text" id="tag" name="tag" required aria-required="true" placeholder="Study/Project">
+                        <input type="text" id="tag" name="tag" required aria-required="true"
+                            placeholder="Study/Project">
                     </div>
 
                     <div class="formActions">
@@ -63,9 +68,10 @@
             </section>
         </footer>
     </div>
-<script type="module" src="../static/js/main.js"></script>
-<script type="module" src="../static/js/storage.js"></script>
-<script type="module" src="../static/js/addForm.js"></script>
-<script type="module" src="../static/js/validators.js"></script>
+    <script type="module" src="../static/js/main.js"></script>
+    <script type="module" src="../static/js/storage.js"></script>
+    <script type="module" src="../static/js/addForm.js"></script>
+    <script type="module" src="../static/js/validators.js"></script>
 </body>
+
 </html>
