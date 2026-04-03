@@ -1,66 +1,122 @@
-//creating the storage module that manages the saving, loading and initialization of task data
-const STORAGE_NAME = 'campusLifeData';
+/**
+ * Storage module - now communicates with Flask backend API
+ * Manages task data through API calls instead of localStorage
+ */
 
-// creating a function that loads all saved tasks
-export function loadTasks() {
+import api from './api.js';
+
+/**
+ * Load all tasks from the backend
+ * @returns {Promise<Array>} Array of task objects
+ */
+export async function loadTasks() {
     try {
-        const data = localStorage.getItem(STORAGE_NAME); // get the stored data as a string from local storage
-
-        //return a javascript list of an empty list if no data has been saved
-        return data ? JSON.parse(data) : [];
+        const tasks = await api.getTasks();
+        return tasks || [];
     } catch (error) {
-        // log any unexpected errors
-        console.error(error);
+        console.error("Error loading tasks from API:", error);
+        // Return empty array if backend is unavailable
         return [];
     }
 }
 
-// A function that saves all the tasks
-export function saveTasks(tasks) {
+/**
+ * Create a new task in the backend
+ * @param {Object} taskData - Task object to create
+ * @returns {Promise<Object>} Created task object
+ */
+export async function createTask(taskData) {
     try {
-        //converting the javascript list to JSON format
-        localStorage.setItem(STORAGE_NAME, JSON.stringify(tasks));
+        const newTask = await api.createTask(taskData);
+        return newTask;
     } catch (error) {
-        // catch any errors
-        console.log("There as an error saving to local storage:", error);
+        console.error("Error creating task:", error);
+        throw error;
     }
 }
 
-// initialize app with seed data
-export async function initializeSeedJson() {
-    // first check if there is data in the local storage
-    const seedData = localStorage.getItem(STORAGE_NAME);
-
-    // if theres no data, load from the seed.json
-    if (!seedData || seedData === '[]') {
-        try {
-            // get the default seed data from the json file
-            const response = await fetch('/campus_life_planner_summative/seed.json');
-            // handle missing JSON files gracefully
-            if (!response.ok) {
-                console.warn("could not find seed data");
-                return [];
-            }
-
-            // convert the JSON to JavaScript objects
-            const seedTasks = await response.json();
-            // save the seed data to local storage
-            saveTasks(seedTasks);
-            // return the initialized task list
-            return seedTasks;
-
-        } catch (error) {
-            // log errors that might occur
-            console.error("Error loading the seed data", error);
-            return [];
-        }
+/**
+ * Update an existing task
+ * @param {string} taskId - ID of task to update
+ * @param {Object} updates - Fields to update
+ * @returns {Promise<Object>} Updated task object
+ */
+export async function updateTask(taskId, updates) {
+    try {
+        const updatedTask = await api.updateTask(taskId, updates);
+        return updatedTask;
+    } catch (error) {
+        console.error("Error updating task:", error);
+        throw error;
     }
-    // load tasks if it already exists
-    return loadTasks();
 }
 
-// generat a unique ID for each task
-// use a timestamp and unique number
+/**
+ * Delete a task from the backend
+ * @param {string} taskId - ID of task to delete
+ * @returns {Promise<Object>} Success message
+ */
+export async function deleteTask(taskId) {
+    try {
+        const result = await api.deleteTask(taskId);
+        return result;
+    } catch (error) {
+        console.error("Error deleting task:", error);
+        throw error;
+    }
+}
+
+/**
+ * Toggle task completion status
+ * @param {string} taskId - ID of task to toggle
+ * @param {boolean} completed - New completion status
+ * @returns {Promise<Object>} Updated task object
+ */
+export async function toggleTaskCompletion(taskId, completed) {
+    try {
+        const updatedTask = await api.toggleTaskCompletion(taskId, completed);
+        return updatedTask;
+    } catch (error) {
+        console.error("Error toggling task completion:", error);
+        throw error;
+    }
+}
+
+/**
+ * Load application settings from backend
+ * @returns {Promise<Object>} Settings object
+ */
+export async function loadSettings() {
+    try {
+        const settings = await api.getSettings();
+        return settings;
+    } catch (error) {
+        console.error("Error loading settings:", error);
+        // Return default settings if backend unavailable
+        return { taskCap: 15, durationUnits: 'minutes' };
+    }
+}
+
+/**
+ * Save application settings to backend
+ * @param {Object} settings - Settings object to save
+ * @returns {Promise<Object>} Updated settings object
+ */
+export async function saveSettings(settings) {
+    try {
+        const updatedSettings = await api.updateSettings(settings);
+        return updatedSettings;
+    } catch (error) {
+        console.error("Error saving settings:", error);
+        throw error;
+    }
+}
+
+/**
+ * Generate a unique ID for each task
+ * Uses timestamp and random number
+ * @returns {string} Unique task ID
+ */
 export function generateUniqueId() {
-    return 'task_' + Date.now() + Math.floor(Math.random() * 1000);
+    return 'task_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
 }
