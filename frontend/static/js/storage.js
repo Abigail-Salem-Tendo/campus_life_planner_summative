@@ -6,6 +6,21 @@
 import api from './api.js';
 
 /**
+ * Load a specific task by ID from the backend
+ * @param {string} taskId - ID of task to load
+ * @returns {Promise<Object>} Task object
+ */
+export async function loadTask(taskId) {
+    try {
+        const task = await api.getTask(taskId);
+        return task;
+    } catch (error) {
+        console.error("Error loading task:", error);
+        throw error;
+    }
+}
+
+/**
  * Load all tasks from the backend
  * @returns {Promise<Array>} Array of task objects
  */
