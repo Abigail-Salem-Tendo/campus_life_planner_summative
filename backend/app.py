@@ -1,7 +1,7 @@
 """
 Campus Life Planner - Flask Backend Application
 """
-from flask import Flask, g, request
+from flask import Flask, g, request, render_template
 from flask_cors import CORS
 from config import Config
 from models import init_db, get_session
@@ -11,7 +11,14 @@ import os
 
 def create_app(config_class=Config):
     """Application factory pattern"""
-    app = Flask(__name__)
+    # Point Flask to the frontend directory
+    template_folder = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'templates')
+    static_folder = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'static')
+    
+    app = Flask(__name__, 
+                template_folder=template_folder,
+                static_folder=static_folder,
+                static_url_path='/static')
     app.config.from_object(config_class)
     
     # Enable CORS for frontend communication
@@ -52,6 +59,33 @@ def create_app(config_class=Config):
     def health():
         """Health check endpoint"""
         return {'status': 'healthy', 'message': 'Campus Life Planner API is running'}
+    
+    # Frontend routes
+    @app.route('/')
+    @app.route('/index.html')
+    def index():
+        """Serve dashboard page"""
+        return render_template('index.html')
+    
+    @app.route('/tasks.html')
+    def tasks():
+        """Serve tasks page"""
+        return render_template('tasks.html')
+    
+    @app.route('/addForm.html')
+    def add_form():
+        """Serve add task form page"""
+        return render_template('addForm.html')
+    
+    @app.route('/settings.html')
+    def settings():
+        """Serve settings page"""
+        return render_template('settings.html')
+    
+    @app.route('/about.html')
+    def about():
+        """Serve about page"""
+        return render_template('about.html')
     
     return app
 
