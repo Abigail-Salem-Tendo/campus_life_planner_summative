@@ -1,0 +1,31 @@
+/* ── Hero greeting chip ── */
+.greeting {
+    background: var(--clr-purple);
+    border-radius: var(--radius-xl);
+    padding: 2rem 1.75rem;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.greeting h1 {
+    font-family: var(--font-display);
+    color: #fff;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+}
+
+.greeting p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 0.4rem;
+}
+
+/* ── Today's tasks empty state ── */
+.emptyState {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--clr-muted);
+}
+
+.emptyState p {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+}

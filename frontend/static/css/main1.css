@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600&display=swap');
+@import 'layout.css';
+@import 'components.css';
+
+/* ── Design Tokens ── */
+:root {
+    --clr-bg: #F4F1F8;
+    --clr-surface: #FFFFFF;
+    --clr-surface-2: #F0EAF7;
+    --clr-purple: #7C3AED;
+    --clr-purple-mid: #A855F7;
+    --clr-lilac: #C4B5FD;
+    --clr-pink: #F472B6;
+    --clr-dark: #2E1065;
+    --clr-text: #3B1F6A;
+    --clr-muted: #7E6A96;
+    --clr-border: #DDD6FE;
+
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  22px;
+  --radius-xl:  32px;
+
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', sans-serif;
+
+    --transition: 0.2s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* ── Reset ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  font-size: 1rem;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1,h2,h3 { line-height: 1.2; font-weight: 600; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }

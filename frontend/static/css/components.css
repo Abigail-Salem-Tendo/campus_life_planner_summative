@@ -1,0 +1,202 @@
+/* ── Greeting ── */
+.greeting {
+    margin-bottom: 2rem;
+}
+
+.greeting h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--clr-dark);
+    letter-spacing: -0.03em;
+}
+
+.greeting p {
+    color: var(--clr-muted);
+    margin-top: 0.35rem;
+    font-size: 0.95rem;
+}
+
+/* ── Stat Cards ── */
+.weeklyStats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.statCard {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-lg);
+    padding: 1.25rem 1rem;
+    text-align: center;
+    transition: border-color var(--transition);
+}
+
+.statCard:hover {
+    border-color: var(--clr-purple);
+}
+
+.statTitle {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--clr-muted);
+    margin-bottom: 0.5rem;
+}
+
+.statValue {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--clr-purple);
+    font-family: var(--font-display);
+}
+
+/* ── Section headings ── */
+section h2 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--clr-text);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+section h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1em;
+    background: var(--clr-purple);
+    border-radius: 2px;
+}
+
+/* ── Task Cards ── */
+.taskCard {
+    background: var(--clr-surface);
+    border: 1px solid var(--clr-border);
+    border-radius: var(--radius-md);
+    padding: 0.875rem 1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color var(--transition);
+}
+
+.taskCard:hover {
+    border-color: var(--clr-lilac);
+}
+
+.taskInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.taskInfo p {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--clr-text);
+}
+
+.taskActions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* ── Buttons ── */
+.btn {
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-family: var(--font-body);
+    transition: all var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.saveBtn {
+    background: var(--clr-purple);
+    color: #fff;
+}
+
+.saveBtn:hover {
+    background: var(--clr-dark);
+}
+
+.cancelBtn {
+    background: var(--clr-surface-2);
+    color: var(--clr-muted);
+    border: 1px solid var(--clr-border);
+}
+
+.cancelBtn:hover {
+    background: var(--clr-border);
+    color: var(--clr-text);
+}
+
+/* ── Forms ── */
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
+}
+
+.formGroup label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--clr-muted);
+    margin-bottom: 0.4rem;
+}
+
+.formGroup input,
+.formGroup select {
+    padding: 0.6rem 0.85rem;
+    border: 1.5px solid var(--clr-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    font-family: var(--font-body);
+    color: var(--clr-text);
+    background: var(--clr-surface);
+    transition: border-color var(--transition), box-shadow var(--transition);
+    outline: none;
+}
+
+.formGroup input:focus,
+.formGroup select:focus {
+    border-color: var(--clr-purple);
+}
+
+/* ── About ── */
+.aboutContainer {
+    max-width: 760px;
+    margin: 0 auto;
+}
+
+.about p {
+    font-size: 0.95rem;
+    color: var(--clr-muted);
+    margin-bottom: 1rem;
+}
+
+/* ── Task table grid (desktop) ── */
+@media (min-width: 1024px) {
+    .taskTable {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .taskCard {
+        margin-bottom: 0;
+    }
+}
