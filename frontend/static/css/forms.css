@@ -1,0 +1,46 @@
+/* ── Add Form Page ── */
+.formSection {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.formSection h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--clr-dark);
+  margin-bottom: 1.5rem;
+}
+
+.taskForm {
+  background: var(--clr-surface);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+}
+
+.formActions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.formActions .btn {
+  flex: 1;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  justify-content: center;
+}
+
+#statusMessage {
+  padding: 0.75rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+#statusMessage:not(:empty) {
+  background: var(--clr-surface-2);
+  border: 1px solid var(--clr-border);
+}
