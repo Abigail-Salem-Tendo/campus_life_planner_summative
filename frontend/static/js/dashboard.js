@@ -72,7 +72,7 @@ function displayStats(stats, settings) {
     overdue.textContent = stats.overdueTasks;
     frequent.textContent = stats.frequentTag.toUpperCase();
     completed.focus();
-// checking the total tasks with the target tasks
+    // checking the total tasks with the target tasks
     const totalTasks = stats.totalTasks;
     const capmessage = document.getElementById('capmessage');
 

@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             taskCap: Number(taskCap.value),
             durationUnits: durationUnits.value,
         }
-        
+
         console.log('Saving settings:', newSettings);
 
         try {

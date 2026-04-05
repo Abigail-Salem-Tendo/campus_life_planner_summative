@@ -15,7 +15,7 @@ async function updateTasks() {
     let displayList = searchTasks(currentTasks, searchText);
     // sort the filtered tasks (title, tag, due date)
     sortTasks(sortBy.value, displayList);
-// display the final sorted list on the page
+    // display the final sorted list on the page
     await displayTasks(displayList);
     //update the aria live region
     if (statusMessage) {
@@ -28,10 +28,10 @@ async function deleteTask(id) {
     try {
         // Delete from backend
         await apiDeleteTask(id);
-        
+
         // Remove from current tasks array
         currentTasks = currentTasks.filter(task => task.id !== id);
-        
+
         await updateTasks();
 
         //Update the aria live region
@@ -45,7 +45,7 @@ async function deleteTask(id) {
         }
     }
 }
- // function to handle the click actions on the edit and delete buttons
+// function to handle the click actions on the edit and delete buttons
 function handleAction(e) {
     const target = e.target;
     const taskId = target.getAttribute("data-id");
@@ -71,11 +71,11 @@ async function completionToggle(e) {
 
     if (task) {
         const newCompletedStatus = e.target.checked;
-        
+
         try {
             // Update in backend
             await toggleTaskCompletion(taskId, newCompletedStatus);
-            
+
             // Update local state
             task.completed = newCompletedStatus;
             await updateTasks();
@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const taskTable = document.getElementById('taskTable')
     const sortBy = document.getElementById('sortBy')
     const searchInput = document.getElementById('searchTasks');
-    
+
     //load existing tasks from API
     currentTasks = await loadTasks();
 
@@ -157,7 +157,7 @@ async function displayTasks(tasks) {
         return `${minutes} min`;
     };
 
-// creating the html for each task but is it necessary in the javascript file
+    // creating the html for each task but is it necessary in the javascript file
     const taskHtml = tasks.map(task => `
         <div class="taskCard" data-id="${task.id}">
             <div class="taskInfo">
